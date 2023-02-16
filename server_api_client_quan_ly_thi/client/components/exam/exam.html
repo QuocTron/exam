@@ -1,0 +1,194 @@
+<div class="container" id="main-page-exam" style="margin-top: 40px;">
+    <!--Exam form-->
+    <form id="questionForm_{{$index+1}}" class="questionForm-container" ng-repeat="questions in examDetails | orderBy: 'OrderQuestion' | headerFilter">
+
+        <!-- If Group Question -->
+        <div class="questionForm-content" ng-if="questions.children">
+            <!--Chapter-->
+            <h4 class="questionForm-content-chapter" ng-bind-html="questions.ChapterName" ng-if="questions.isHeader">
+            </h4>
+
+            <!--group question-->
+            <!-- If group question has audio -->
+            <div ng-if="questions.Audio" class="questionForm-group">
+                <span ng-bind-html="questions.Content.split('[<egc>]')[0]"></span>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button class="btn btn-info" id="btnAudio_{{questions.Id}}" type="button" ng-click="handleAudio(questions)">
+                            <span class="glyphicon glyphicon-headphones"></span> Listen to the question
+                        </button>
+                        <button class="btn btn-danger" ng-if="playingQuestion.Id == questions.Id" ng-click="clickStopAudio(true)">Stop</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group" ng-if="playingQuestion.Id == questions.Id">
+                            <span class="input-group-addon" style="border: 1px solid #ccc !important;">{{playingAudio.remaining | trackTime}}</span>
+                            <input class="form-control" disabled="disabled" type="range" min="0" max="1" step="0.001" ng-model="audioProgressControl.value">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                    </div>
+                    <div class="col-sm-4 text-left">
+                        <small class="text-danger">Bạn đã nghe <b id="countAudio_{{questions.Id}}"><span
+                                    ng-hide="questions.ListenTimes">0</span>{{questions.ListenTimes}} lần</b></small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- If group question hasn't audio -->
+            <div ng-if="!questions.Audio" class="questionForm-group" ng-bind-html="questions.Content.split('[<egc>]')[0]"></div>
+
+            <div class="panel panel-default" style="margin-left:1em;" ng-repeat="child in questions.children | orderBy: 'OrderQuestion'">
+                <!--question title-->
+                <div class="panel-heading">
+                    Câu {{child.OrderQuestion}}:
+                    <span ng-bind-html="child.ParentId == 0 ? child.Content.split('[<egc>]')[1] : child.Content"></span>
+                </div>
+                <!--answers-->
+                <div class="panel-body">
+                    <div class="row">
+                        <div ng-repeat="answerChild in child.Answers | orderBy: 'Order'" ng-if="child.Answers.length > 1">
+                            <!-- Check the length of answers -->
+                            <div id="answerForm-body_{{answerChild.Id}}" class="col-md-12 answerForm-body" ng-if="answerChild.Content.length > 50">
+                                <div class="radio no-bottom">
+                                    <label ng-class="questions.AnswerCurrentChoose == answerChild.Id ? 'answer-selected' : ''">
+                                        <input type="radio" ng-model="child.AnswerCurrentChoose"
+                                            value="{{answerChild.Id}}"
+                                            ng-checked="answerChild.Id == child.AnswerCurrentChoose ? 'true' : ''"
+                                            name="answerId_Ques_{{child.Id}}"
+                                            ng-change="updateCurrentAnswer(child, answerChild)">
+                                        <b>{{$index+1 | character}}.</b>
+                                        <span ng-bind-html="answerChild.Content"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="answerForm-body_{{answerChild.Id}}" class="col-md-3 answerForm-body" ng-if="answerChild.Content.length < 50">
+                                <div class="radio no-bottom">
+                                    <label ng-class="questions.AnswerCurrentChoose == answerChild.Id ? 'answer-selected' : ''">
+                                        <input type="radio" ng-model="child.AnswerCurrentChoose"
+                                            value="{{answerChild.Id}}"
+                                            ng-checked="answerChild.Id == child.AnswerCurrentChoose ? 'true' : ''"
+                                            name="answerId_Ques_{{child.Id}}"
+                                            ng-change="updateCurrentAnswer(child, answerChild)">
+                                        <b>{{$index+1 | character}}.</b>
+                                        <span ng-bind-html="answerChild.Content"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- If Single Question -->
+        <div class="questionForm-content" ng-if="!questions.children">
+            <!--Chapter-->
+            <h4 class="questionForm-content-chapter" ng-bind-html="questions.ChapterName" ng-if="questions.isHeader">
+            </h4>
+            <!-- Question content -->
+            <div class="panel panel-default">
+                <!--question title-->
+                <!-- If question is audio -->
+                <div class="panel-heading" ng-if="questions.Audio">
+                    Câu {{questions.OrderQuestion}}:
+                    <span id="{{questions.Id}}" ng-bind-html="questions.Content"></span>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button class="btn btn-info" id="btnAudio_{{questions.Id}}" type="button" ng-click="handleAudio(questions)">
+                                <span class="glyphicon glyphicon-headphones"></span> Listen to the question
+                            </button>
+                            <button class="btn btn-danger" ng-if="playingQuestion.Id == questions.Id" ng-click="clickStopAudio(false)">Stop</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group" ng-if="playingQuestion.Id == questions.Id">
+                                <span class="input-group-addon" style="border: 1px solid #ccc !important;">{{playingAudio.remaining |
+                                    trackTime}}</span>
+                                <input class="form-control" disabled="disabled" type="range" min="0" max="1" step="0.001" ng-model="audioProgressControl.value">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                        </div>
+                        <div class="col-sm-4 text-left">
+                            <small class="text-danger">Bạn đã nghe <b id="countAudio_{{questions.Id}}"><span
+                                        ng-hide="questions.ListenTimes">0</span>{{questions.ListenTimes}}
+                                    lần</b></small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- if question isn't audio -->
+                <div class="panel-heading" ng-if="!questions.Audio">
+                    Câu {{questions.OrderQuestion}}:
+                    <span id="{{questions.Id}}" ng-bind-html="questions.Content"></span>
+                </div>
+
+                <!--Answers-->
+                <div class="panel-body">
+
+                    <div style="display:grid;" ng-class="{'twoColumn': questions.maxLength < 70, 'oneColumn': questions.maxLength >= 70, 'fourColumn': questions.maxLength <= 25}">
+                        <div ng-repeat="answer in questions.Answers | orderBy: 'Order'" ng-if="questions.Answers.length > 1">
+                            <!-- Check the length of answers -->
+                            <div id="answerForm-body_{{answer.Id}}" class="answerForm-body">
+                                <div class="radio no-bottom">
+                                    <label ng-class="questions.AnswerCurrentChoose == answer.Id ? 'answer-selected' : ''">
+                                        <input type="radio" ng-model="questions.AnswerCurrentChoose"
+                                            value="{{answer.Id}}"
+                                            ng-checked="answer.Id == questions.AnswerCurrentChoose ? 'true' : ''"
+                                            name="answerId_Ques_{{questions.Id}}"
+                                            ng-change="updateCurrentAnswer(questions, answer)">
+                                        <b>{{$index+1 | character}}.</b>
+                                        <span ng-bind-html="answer.Content"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+
+    <p style="margin-right: -0.5em;margin-bottom: 3em;" href="javascript:;" ng-click="goToTop()" id="return-to-top">
+        <i class="glyphicon glyphicon-arrow-up"></i>
+    </p>
+
+</div>
+<div style=" float: right;">
+    <timer id="clock" class="countdown-timer" ng-if="duration" countdown="duration" max-time-unit="'hour'" interval="1000" finish-callback="finishedExam()">
+        <span class="time" ng-class="one_thirdTimes_Status == true ? 'one_thirdTimes_Status': ''">{{hhours}}:{{mminutes}}:{{sseconds}}</span>
+    </timer>
+</div>
+<div style="text-align: center;">- Hết-</div>
+
+
+<div style="padding-top:0.5em; text-align: center; bottom: 0;position: fixed; background-color: #fff!important; z-index:1030; width: 100%; display: inline-block;">
+    <button style="float: left;" class="btn btn-primary" style="margin: 0.5em;" ng-click="submitExam()">
+        NỘP BÀI</button>
+    <button style="float: left; margin-left: 0.5em" class="btn btn-primary" href="javascript:;" ng-click="openQuestionReviewModal()">XEM LẠI
+    </button>
+    <div style="padding-right: 13%; text-align: center;margin-top: 0.5em; color: gray">
+        <p>©FIT-SOFT - Nhóm phát triển phần mềm Khoa Công nghệ Thông tin </p>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // ===== Scroll to Top ==== 
+        $(window).scroll(function() {
+            if ($(this).scrollTop() >= 20) { // If page is scrolled more than 50px
+                $('#return-to-top').show(); // Fade in the arrow
+            } else {
+                $('#return-to-top').hide(); // Else fade out the arrow
+            }
+        });
+    });
+</script>

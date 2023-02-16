@@ -1,0 +1,8 @@
+- Refactor server folder with higher node version
+- Make more and adjust reasonable comments in project
+- Review stored procedure
+- Make test case with karma test
+- Check performance when deploy project
+- Check speed and bandwidth when student test audio
+- Adjust the length of the answer
+- add log

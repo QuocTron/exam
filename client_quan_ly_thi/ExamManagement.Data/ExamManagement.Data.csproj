@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{53153F9C-1C4A-43A7-B710-878C18A08ACD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExamManagement.Data</RootNamespace>
+    <AssemblyName>ExamManagement.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.2.2\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DBInitializer.cs" />
+    <Compile Include="ExamManagementContext.cs" />
+    <Compile Include="Infrastructures\DbFactory.cs" />
+    <Compile Include="Infrastructures\Disposable.cs" />
+    <Compile Include="Infrastructures\RepositoryBase.cs" />
+    <Compile Include="Infrastructures\UnitOfWork.cs" />
+    <Compile Include="Migrations\201807070915599_Initial.cs" />
+    <Compile Include="Migrations\201807070915599_Initial.Designer.cs">
+      <DependentUpon>201807070915599_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807070953287_AddValidateToFaculty.cs" />
+    <Compile Include="Migrations\201807070953287_AddValidateToFaculty.Designer.cs">
+      <DependentUpon>201807070953287_AddValidateToFaculty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807131744510_AddIdsForQuestionSheet.cs" />
+    <Compile Include="Migrations\201807131744510_AddIdsForQuestionSheet.Designer.cs">
+      <DependentUpon>201807131744510_AddIdsForQuestionSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808161630187_MergeWithOfflineApp.cs" />
+    <Compile Include="Migrations\201808161630187_MergeWithOfflineApp.Designer.cs">
+      <DependentUpon>201808161630187_MergeWithOfflineApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808170105126_AddPaperSets.cs" />
+    <Compile Include="Migrations\201808170105126_AddPaperSets.Designer.cs">
+      <DependentUpon>201808170105126_AddPaperSets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808180016376_AddMarkRounding.cs" />
+    <Compile Include="Migrations\201808180016376_AddMarkRounding.Designer.cs">
+      <DependentUpon>201808180016376_AddMarkRounding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808180040474_ModifyMarkRounding.cs" />
+    <Compile Include="Migrations\201808180040474_ModifyMarkRounding.Designer.cs">
+      <DependentUpon>201808180040474_ModifyMarkRounding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812121539257_MapWithHieu.cs" />
+    <Compile Include="Migrations\201812121539257_MapWithHieu.Designer.cs">
+      <DependentUpon>201812121539257_MapWithHieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812121606177_UpdatePrecision.cs" />
+    <Compile Include="Migrations\201812121606177_UpdatePrecision.Designer.cs">
+      <DependentUpon>201812121606177_UpdatePrecision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903180711230_UpdateShiftSubject.cs" />
+    <Compile Include="Migrations\201903180711230_UpdateShiftSubject.Designer.cs">
+      <DependentUpon>201903180711230_UpdateShiftSubject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903191425193_AddDateTimesShiftSubJect.cs" />
+    <Compile Include="Migrations\201903191425193_AddDateTimesShiftSubJect.Designer.cs">
+      <DependentUpon>201903191425193_AddDateTimesShiftSubJect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903211246308_AddDurationAndActivetedShiftSubject.cs" />
+    <Compile Include="Migrations\201903211246308_AddDurationAndActivetedShiftSubject.Designer.cs">
+      <DependentUpon>201903211246308_AddDurationAndActivetedShiftSubject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903220920515_DeleteTimeShift.cs" />
+    <Compile Include="Migrations\201903220920515_DeleteTimeShift.Designer.cs">
+      <DependentUpon>201903220920515_DeleteTimeShift.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903280826549_AddExtraTimeLog.cs" />
+    <Compile Include="Migrations\201903280826549_AddExtraTimeLog.Designer.cs">
+      <DependentUpon>201903280826549_AddExtraTimeLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903280912365_AddCreatedQuestionSheetShiftSubject.cs" />
+    <Compile Include="Migrations\201903280912365_AddCreatedQuestionSheetShiftSubject.Designer.cs">
+      <DependentUpon>201903280912365_AddCreatedQuestionSheetShiftSubject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904261510045_Edit_ShiftSubjectStudent_ShiftSubject.cs" />
+    <Compile Include="Migrations\201904261510045_Edit_ShiftSubjectStudent_ShiftSubject.Designer.cs">
+      <DependentUpon>201904261510045_Edit_ShiftSubjectStudent_ShiftSubject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904290532581_Edit_ShiftSubjectStudent.cs" />
+    <Compile Include="Migrations\201904290532581_Edit_ShiftSubjectStudent.Designer.cs">
+      <DependentUpon>201904290532581_Edit_ShiftSubjectStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906041422081_AddDeleted_QuestionSheetDetail.cs" />
+    <Compile Include="Migrations\201906041422081_AddDeleted_QuestionSheetDetail.Designer.cs">
+      <DependentUpon>201906041422081_AddDeleted_QuestionSheetDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AnswerRepository.cs" />
+    <Compile Include="Repositories\ChapterRepository.cs" />
+    <Compile Include="Repositories\ExtraTimeLogRepository.cs" />
+    <Compile Include="Repositories\MarkRoundingRepository.cs" />
+    <Compile Include="Repositories\MatrixDetailRepository.cs" />
+    <Compile Include="Repositories\MatrixRepository.cs" />
+    <Compile Include="Repositories\QuestionSheetDetailRepository.cs" />
+    <Compile Include="Repositories\SemesterRepository.cs" />
+    <Compile Include="Repositories\ShiftSubjectStudentRepository.cs" />
+    <Compile Include="Repositories\ShiftSubjectRepository.cs" />
+    <Compile Include="Repositories\StudentRepository.cs" />
+    <Compile Include="Repositories\QuestionSheetRepository.cs" />
+    <Compile Include="Repositories\SubjectRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\ShiftRepository.cs" />
+    <Compile Include="Repositories\QuestionRepository.cs" />
+    <Compile Include="Repositories\ExamRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExamManagement.Entities\ExamManagement.Entities.csproj">
+      <Project>{bebdbf9a-9ca6-4cf9-a862-382a1774f672}</Project>
+      <Name>ExamManagement.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807070915599_Initial.resx">
+      <DependentUpon>201807070915599_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807070953287_AddValidateToFaculty.resx">
+      <DependentUpon>201807070953287_AddValidateToFaculty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807131744510_AddIdsForQuestionSheet.resx">
+      <DependentUpon>201807131744510_AddIdsForQuestionSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161630187_MergeWithOfflineApp.resx">
+      <DependentUpon>201808161630187_MergeWithOfflineApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808170105126_AddPaperSets.resx">
+      <DependentUpon>201808170105126_AddPaperSets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808180016376_AddMarkRounding.resx">
+      <DependentUpon>201808180016376_AddMarkRounding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808180040474_ModifyMarkRounding.resx">
+      <DependentUpon>201808180040474_ModifyMarkRounding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812121539257_MapWithHieu.resx">
+      <DependentUpon>201812121539257_MapWithHieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812121606177_UpdatePrecision.resx">
+      <DependentUpon>201812121606177_UpdatePrecision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903180711230_UpdateShiftSubject.resx">
+      <DependentUpon>201903180711230_UpdateShiftSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903191425193_AddDateTimesShiftSubJect.resx">
+      <DependentUpon>201903191425193_AddDateTimesShiftSubJect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211246308_AddDurationAndActivetedShiftSubject.resx">
+      <DependentUpon>201903211246308_AddDurationAndActivetedShiftSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903220920515_DeleteTimeShift.resx">
+      <DependentUpon>201903220920515_DeleteTimeShift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903280826549_AddExtraTimeLog.resx">
+      <DependentUpon>201903280826549_AddExtraTimeLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903280912365_AddCreatedQuestionSheetShiftSubject.resx">
+      <DependentUpon>201903280912365_AddCreatedQuestionSheetShiftSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904261510045_Edit_ShiftSubjectStudent_ShiftSubject.resx">
+      <DependentUpon>201904261510045_Edit_ShiftSubjectStudent_ShiftSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904290532581_Edit_ShiftSubjectStudent.resx">
+      <DependentUpon>201904290532581_Edit_ShiftSubjectStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906041422081_AddDeleted_QuestionSheetDetail.resx">
+      <DependentUpon>201906041422081_AddDeleted_QuestionSheetDetail.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

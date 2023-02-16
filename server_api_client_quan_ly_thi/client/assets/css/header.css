@@ -1,0 +1,64 @@
+#header-logo {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+#header-info {
+    background-color: #fff;
+    border-radius: 5px;
+    max-width: 450px;
+    min-width: 400px;
+    margin-top: 10px;
+    margin-left: 80px;
+}
+
+#hutech-pencil {
+    width: 70px;
+    background-color: #3d96e3;
+    height: auto;
+    box-shadow: 4px 4px 10px #000;
+}
+
+#hutech-description {
+    margin-left: 10px;
+    margin-top: 5px;
+    color: #fff;
+}
+
+#hutech-logo {
+    width: 150px;
+    background-color: #fff;
+    height: auto;
+    /* margin-left: 7em; */
+    margin-top: 0.7em;
+}
+#hutech-logo-login {
+    width: 200px;
+    background-color: #fff;
+    height: auto;
+    margin-top: 0.5em;
+    padding-bottom: 1em;
+}
+
+#user-img {
+    width: 70px;
+    margin: 7px;
+    border: 1px solid #000;
+    margin-right: 10px;
+}
+
+.nav.navbar-nav.navbar-right li {
+    margin-top: 5px;
+}
+
+.student-info-Utilities{
+    display: none;
+}
+
+.student-info-Utilities-body{
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+    color: #176bb5;
+    font-size: 16px;
+}

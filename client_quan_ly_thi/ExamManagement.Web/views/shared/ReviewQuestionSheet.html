@@ -1,0 +1,71 @@
+﻿<div class="w3-modal-content w3-card-8 w3-animate-zoom" style="width: 90%">
+    <div class="w3-container w3-teal">
+        <span class="w3-closebtn w3-container w3-padding-8 w3-display-topright" ng-click="closeReviewQuestionSheetModal()" title="Close Modal">x</span>
+        <h4 class="modal-title">Kết quả làm bài</h4>
+    </div>
+    <form class="w3-container" role="form" name="questionSheetReviewForm">
+        <div class="w3-section">
+            <div class="w3-display-container">
+                <div class="w3-col s12 m6 l9 ">
+                    <div class="w3-col s12 m6 l6 w3-left w3-row-padding" style="justify-content: center; margin: 5px 0px;">
+                        <b class="w3-col s6 m4 l3">Họ tên:</b>
+                        <b ng-bind="questionSheet.studentName"></b>
+                    </div>
+                    <div class="w3-col s12 m6 l6 w3-left w3-row-padding" style="justify-content: center; margin: 5px 0px;">
+                        <b class="w3-col s6 m4 l3">Mã số:</b>
+                        <b ng-bind="questionSheet.studentCode"></b>
+                    </div>
+                    <div class="w3-col s12 m6 l6 w3-left w3-row-padding" style="justify-content: center; margin: 5px 0px;">
+                        <b class="w3-col s6 m4 l3">Môn:</b>
+                        <b ng-bind="questionSheet.subjectName"></b>
+                    </div>
+                    <div class="w3-col s12 m6 l6 w3-left w3-row-padding" style="justify-content: center; margin: 5px 0px;">
+                        <b class="w3-col s6 m4 l3">Mã đề:</b>
+                        <b ng-bind="questionSheet.id"></b>
+                    </div>
+                    <div class="w3-col s12 m6 l6 w3-left w3-row-padding" style="justify-content: center; margin: 5px 0px;">
+                        <b class="w3-col s6 m4 l3">Thời gian:</b>
+                        <b ng-bind="questionSheet.duration + ' phút'"></b>
+                    </div>
+                    <div class="w3-col s12 m6 l6 w3-left w3-row-padding" style="justify-content: center; margin: 5px 0px;">
+                        <b class="w3-col s6 m4 l3">Ca thi:</b>
+                        <b ng-bind="questionSheet.startTime | date: 'dd/MM/yyyy hh:mm'"></b>
+                    </div>
+                </div>
+                <div class="w3-col s12 m6 l3">
+                    <div class="w3-left" style="flex-direction: row; justify-content: center">
+                        <canvas class="w3-center" id="canvas-score" width="150" height="150"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col w3-display-container" style="border-top: 1px lightgrey solid;">
+                <div class="w3-col s12 m12 l12 w3-row">
+                    <div class="w3-left">
+                        <h4>
+                            Danh sách câu trả lời
+                        </h4>
+                    </div>
+                    <div class="w3-center">
+                        <h4 class="w3-text-teal w3-xlarge" ng-bind="correctNum + '/' + questionSheet.questions.length + ' câu làm đúng'"></h4>
+                    </div>
+                    <div class="w3-right">
+                        Đúng
+                        <span style="margin-right: 0.5rem;" class="w3-xlarge ion-android-done w3-text-green"></span>
+                        Sai
+                        <span style="margin-right: 0.5rem;" class="w3-xlarge ion-close w3-text-red"></span>
+                        Chưa làm
+                        <span style="margin-right: 0.5rem;" class="w3-xlarge ion-android-remove w3-text-black"></span>
+                    </div>
+                </div>
+                <div class="w3-center">
+                    <div class="w3-col" style="width: 10%" ng-repeat="question in questionSheet.questions | orderBy: 'order'">
+                        <span class="w3-xlarge" ng-bind="question.order + '.'"></span>
+                        <span ng-if="!question.answerId" class="w3-xlarge ion-android-remove w3-text-black"></span>
+                        <span ng-if="question.answerId && question.correct" class="w3-xlarge ion-android-done w3-text-green"></span>
+                        <span ng-if="question.answerId && !question.correct" class="w3-xlarge ion-close w3-text-red"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

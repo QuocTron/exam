@@ -1,0 +1,75 @@
+<div class="container formResult-container" style="margin-top: 60px;">
+    <div class="row formResult-body">
+        <div class="col-md-8 formResult-content">
+            <h2 class="text-center text-uppercase">THÔNG TIN SINH VIÊN</h2>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h4>HỌ TÊN:
+                        <b ng-bind="reviewInfo.StudentName"></b>
+                    </h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>MSSV:
+                        <b ng-bind="reviewInfo.StudentCode"></b>
+                    </h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>MÔN THI:
+                        <b ng-bind="reviewInfo.SubjectName"></b>
+                    </h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>CA THI:
+                        <b ng-bind="reviewInfo.StartTime | date : 'dd/MM/yyyy HH:mm' : 'UTC'"></b>
+                    </h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>MÃ ĐỀ THI:
+                        <b ng-bind="reviewInfo.QuestionSheetId"></b>
+                    </h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>THỜI LƯỢNG:
+                        <b ng-bind="reviewInfo.Duration+ ' phút'"></b>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 formResult-content">
+            <h2 class="text-center text-uppercase">Điểm</h2>
+            <h4 style="margin:0;" class="text-center text-uppercase">{{resultNumberCorrect}}</h4>
+            <canvas id="resultMarkCanvas" width="150" height="120"></canvas>
+        </div>
+    </div>
+</div>
+<div class="container formResult-container">
+    <div class="row">
+        <div class="col-md-12 formResult-content">
+            <h2 class="text-uppercase">
+                CÂU TRẢ LỜI
+                <div id="noteMark">
+                    <span style="color:green">Đúng</span><span style="margin-right:0.5rem">
+                    <span style="margin-right:0.5rem" class="glyphicon glyphicon-ok text-success"></span> <span style="color:red">Sai</span>
+                    <span style="margin-right:0.5rem" class="glyphicon glyphicon-remove text-danger"></span> Chưa chọn
+                    <span style="margin-right:0.5rem" class="glyphicon glyphicon-minus"></span>
+                </div>
+            </h2>
+            <div ng-repeat="res in resultAnswerList">
+
+            </div>
+            <div id="questionResultList" class="list-unstyled list-inline grid-container">
+                <div ng-repeat="re in resultAnswerList | orderBy: 'Order'">
+                    {{re.Order}}.
+                    <span ng-if="(re.Answered == 0)" class="glyphicon glyphicon-minus"></span>
+                    <span ng-if="(re.Answered != 0) && re.Order && re.Correct" class="glyphicon glyphicon-ok text-success"></span>
+                    <span ng-if="(re.Answered != 0) && re.Order && !re.Correct" class="glyphicon glyphicon-remove text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 col-md-offset-4">
+    <button class="btn btn-default btn-block" type="button" ng-click="signOut(reviewInfo.ShiftSubjectId, reviewInfo.QuestionSheetId, reviewInfo.StudentId)">
+		<h4>ĐĂNG XUẤT</h4>
+	</button>
+</div>

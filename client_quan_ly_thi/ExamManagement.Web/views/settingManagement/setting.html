@@ -1,0 +1,171 @@
+﻿<header>
+    <h4><i class="ion-ios-home-outline" aria-hidden="true"></i> Thiết lập</h4>
+    <div>
+        <a data-ng-click="showSemesterManageModal()" href="javascript:void(0)" class="w3-btn w3-green">Quản lý Học kỳ</a>
+        <a data-ng-click="showMarkRoundModal()" href="javascript:void(0)" class="w3-btn w3-green">Làm tròn điểm</a>
+    </div>
+    <div class="w3-clear">
+        <br />
+    </div>
+    <hr />
+</header>
+
+
+<div class="w3-modal" id="semesterManageModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 800px">
+        <div class="w3-container w3-teal">
+            <span data-ng-click="closeSemesterManageModal()" class="w3-closebtn w3-container w3-padding-8 w3-display-topright" title="Close Modal">×</span>
+            <h4 class="modal-title" id="myModalLabel">Quản lý thông tin Học kỳ</h4>
+        </div>
+        <form class="w3-container" role="form">
+            <div class="w3-section">
+                <div class="w3-row-padding w3-margin-bottom">
+                    <a data-ng-click="showAddSemesterModal()" href="javascript:void(0)" class="w3-btn w3-green">Thêm học kỳ</a>
+                </div>
+                <table class="w3-table w3-bordered w3-responsive">
+                    <tr class="w3-light-grey">
+                        <td>STT</td>
+                        <td>Tên học kỳ</td>
+                        <td></td>
+                    </tr>
+                    <tr data-ng-repeat="semester in semesters">
+                        <td>{{ $index + 1 }}</td>
+                        <td>
+                            {{ semester.name}}
+                        </td>
+                        <td>
+                            <a href="javascript:;" ng-click="showUpdateSemester()">Sửa</a> |
+                            <a href="javascript:;" ng-click="showDeleteSemester()">Xóa</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="w3-modal" id="addSemesterModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 600px">
+        <div class="w3-container w3-teal">
+            <span data-ng-click="closeAddSemesterModal()" class="w3-closebtn w3-container w3-padding-8 w3-display-topright" title="Close Modal">×</span>
+            <h4 class="modal-title" id="myModalLabel">Thêm Học kỳ</h4>
+        </div>
+        <form class="w3-container" role="form" name="semesterForm">
+            <div class="w3-section">
+
+                <div class="w3-row-padding w3-margin-bottom">
+                    <div class="w3-second">
+                        <label>Tên học kỳ*</label>
+                        <input class="w3-input w3-border" ng-model="semester.name" type="text" maxlength="100" placeholder="" required>
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <div class="w3-right">
+                        <input type="submit" value="Thêm" ng-disabled="semesterForm.$invalid" data-ng-click="addSemester()" class="w3-btn w3-blue" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="w3-modal" id="markRoundModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 800px">
+        <div class="w3-container w3-teal">
+            <span data-ng-click="closeMarkRoundModal()" class="w3-closebtn w3-container w3-padding-8 w3-display-topright" title="Close Modal">×</span>
+            <h4 class="modal-title" id="myModalLabel">Thiết lập làm tròn điểm thi</h4>
+        </div>
+        <form class="w3-container" role="form" name="updateMarkRoundingForm">
+            <div class="w3-section">
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="round" class="w3-col s3">Làm tròn điểm</label>
+                    <div class="w3-col s9">
+                        <select id="roundMark" ng-model="selectedMR" ng-options="mr as (mr.name+(mr.using?' - (ĐANG ÁP DỤNG)':'')) for mr in markRoundings" class="w3-input w3-border" required>
+                        </select>
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <div class="w3-right">
+                        <input type="submit" class="w3-teal w3-btn" value="Sửa" ng-hide="selectedMR.using" data-ng-click="showConfirmMarkroundingModal()" />
+                        <button type="button" class="w3-red w3-btn" data-ng-click="closeMarkRoundModal()">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="w3-modal" id="markRoundConfirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 800px">
+        <div class="w3-container w3-teal">
+            <span data-ng-click="closeConfirmMarkroundingModal()" class="w3-closebtn w3-container w3-padding-8 w3-display-topright" title="Close Modal">×</span>
+            <h4 class="modal-title" id="myModalLabel">Thiết lập làm tròn điểm thi</h4>
+        </div>
+        <form class="w3-container" role="form" name="updateMarkRoundingForm">
+            <div class="w3-section">
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="round" class="w3-col s3">Làm tròn điểm</label>
+                    <div class="w3-col s9">
+                        <label class="w3-text w3-text-black">
+                            Bạn chắc chắn muốn đổi cách làm tròn điểm sang {{selectedMR.name}}?
+                        </label>
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <div class="w3-right">
+                        <input type="submit" class="w3-teal w3-btn" value="Sửa" data-ng-click="selectMarkRounding()" />
+                        <button type="button" class="w3-red w3-btn" data-ng-click="closeConfirmMarkroundingModal()">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="w3-modal" id="updateSemesterModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 800px;">
+        <div class="w3-container w3-teal">
+            <span data-ng-click="closeUpdateSemester()" class="w3-closebtn w3-container w3-padding-8 w3-display-topright" title="Close Model">x</span>
+            <h4 class="modal-title" id="mySemesterUpdate">Sửa học kỳ</h4>
+        </div>
+        <form class="w3-container" role="form" name="SemesterUpdateForm">
+            <div class="w3-section">
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="round" class="w3-col s3">Học kỳ</label>
+                    <div class="w3-col s9">
+                        <input type="text" class="w3-input w3-border" ng-model="semesterTemp.name" required />
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <div class="w3-right">
+                        <input type="submit" class="w3-teal w3-btn" value="Sửa" ng-disabled="SemesterUpdateForm.$invalid" data-ng-click="updateSemester()" />
+                        <button type="button" class="w3-red w3-btn" data-ng-click="closeUpdateSemester()">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="w3-modal" id="deleteSemesterModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 800px;">
+        <div class="w3-container w3-teal">
+            <span data-ng-click="closeDeleteSemester()" class="w3-closebtn w3-container w3-padding-8 w3-display-topright" title="Close Model">x</span>
+            <h4 class="modal-title" id="mySemesterdelete">Xóa học kỳ</h4>
+        </div>
+        <form class="w3-container" role="form" name="SemesterUpdateForm">
+            <div class="w3-section">
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="round" class="w3-col s12">Bạn có muốn xóa học kỳ {{ semester.name }}?</label>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <div class="w3-right">
+                        <input type="submit" class="w3-teal w3-btn" value="Xóa" data-ng-click="deleteSemester()" />
+                        <button type="button" class="w3-red w3-btn" data-ng-click="closeDeleteSemester()">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

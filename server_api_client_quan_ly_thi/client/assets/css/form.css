@@ -1,0 +1,242 @@
+/* For main page */
+
+
+/*=======================================*/
+
+.form-basic {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 55px 55px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    font: bold 14px sans-serif;
+    /*custom margin*/
+}
+
+.custom-font {
+    font-weight: 700;
+    display: inline;
+}
+
+.form-basic .form-title-row {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.form-basic h1 {
+    display: inline-block;
+    box-sizing: border-box;
+    color: black;
+    font-size: 32px;
+    padding: 0 10px 15px;
+    border-bottom: 2px solid #6caee0;
+    margin: 0;
+}
+
+.form-basic h2 {
+    display: inline-block;
+    box-sizing: border-box;
+    color: black;
+    font-size: 26px;
+    padding: 0 10px 15px;
+    border-bottom: 2px solid #6caee0;
+    margin: 0;
+}
+
+.questionForm-container {
+    max-width: 100%;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    margin: 3em 0;
+    /* padding-left: 5em; */
+}
+
+.questionForm-content {
+    margin: -30px -30px;
+    /* margin-bottom: -50px; */
+}
+
+
+
+.questionForm-content-chapter {
+    padding-top: 1em;
+}
+
+.panel-heading.questionForm-body {
+    /* background-color: #ffffff; */
+    /* font-weight: 300 */
+    /* display: inline-block; */
+}
+
+.panel-heading.questionForm-body p {
+    /* font-weight: 300 */
+    display: inline-block;
+}
+
+.panel-default {
+    border: 0
+}
+
+.col-md-12.answerForm-body:hover {
+    color: #176bb5;
+}
+
+.col-md-6.answerForm-body:hover {
+    color: #176bb5;
+}
+
+.col-md-3.answerForm-body:hover {
+    color: #176bb5;
+}
+
+.questionForm-group {
+    background-color: #fffaba;
+    border: 2px dashed #8c8b8b;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+
+/* input[type="radio"] {
+    display: none;
+} */
+
+.radio.no-bottom {
+    margin-bottom: 0 !important;
+}
+
+.answer-selected {
+    color: #176bb5;
+}
+
+
+/* For modal */
+
+
+/*=======================================*/
+
+.form-modal-container .panel-body {
+    font-size: 16px;
+}
+
+.form-modal-link {
+    text-decoration: none;
+    color: black;
+}
+
+
+/* For result page */
+
+
+/*=======================================*/
+
+.formResult-container {
+    margin-top: -2em;
+    max-width: 1024px;
+}
+
+.formResult-body {
+    margin-left: -15px;
+}
+
+.formResult-content {
+    background-color: #fff;
+    margin: 15px 0px;
+    border: 1px solid #ccc!important;
+    min-height: 220px;
+    margin-top: 10px;
+}
+
+.formResult-content h2 {
+    font-size: 18px;
+    font-family: "Arial", Times, serif;
+    color: black;
+    padding: 5px;
+    border-bottom: 2px solid #6caee0;
+    text-align: center;
+}
+
+#noteMark {
+    font-size: 12px;
+    text-align: right;
+}
+
+.col-md-8.formResult-content {
+    text-align: justify;
+    width: 70%;
+}
+
+.col-md-8.formResult-content .col-md-12 {
+    margin-left: 60px;
+}
+
+.col-md-2.formResult-content {
+    /*margin-left: 10px;*/
+    width: 30%;
+}
+
+#questionResultList {
+    text-align: justify;
+}
+
+#resultMarkCanvas {
+    margin-top: 10px;
+    margin-left: 65px;
+}
+
+#clock {
+    font-family: 'Share Tech Mono', monospace;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    z-index: 1050;
+    right: 0;
+    margin: 0.5em 1em 0 0;
+}
+
+.time {
+    font-family: 'Share Tech Mono', monospace;
+    /* letter-spacing: 0.05em; */
+    font-size: 25px;
+    /* padding: 5px 0; */
+}
+
+.custom-line ul li div p {
+    margin: 0 0 0.3em;
+}
+
+.oneColumn {
+    grid-template-columns: repeat(1, 1fr)
+}
+
+.twoColumn {
+    grid-template-columns: repeat(2, 1fr)
+}
+
+.fourColumn {
+    grid-template-columns: repeat(4, 1fr)
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 0px;
+    padding: 10px;
+}
+
+.grid-container>div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 20px;
+    border: 0.5px solid #ccc!important;
+}
+
+.swal-button:focus {
+    box-shadow: none
+}
+
+.swal-button--cancel:focus {
+    box-shadow: none
+}

@@ -1,0 +1,79 @@
+.side-menu-basic {
+    position: fixed;
+    left: 0;
+    top: 75px;
+    height: auto;
+    width: 240px;
+    box-sizing: border-box;
+    background-color: #F7F7F7;
+    box-shadow: 2px 4px 5px 0 rgba(29, 30, 31, 0.4);
+    z-index: 10;
+    margin: 0 auto;
+    /*color: #ffffff;*/
+    /*font: bold 16px sans-serif;*/
+    -webkit-transition: 0.4s ease-in;
+    transition: 0.4s ease-in;
+    -webkit-transform: translateX(-300px);
+    transform: translateX(-300px);
+}
+
+.side-menu-basic.side-menu-shown {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+
+/* Scrollable container for the side menu options */
+
+.side-menu-basic .side-menu-content {
+    overflow: auto;
+    max-height: 100%;
+    /*padding: 40px 33px 0;*/
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.side-menu-basic .side-menu-content h3 {
+    margin-top: 0px;
+    border-bottom: 2px solid #a9c2e8;
+}
+
+.col-md-4.reviewQuestion a {
+    text-decoration: none;
+    color: black;
+    border: 1px solid #eaecef;  
+    font-size: 16px; 
+    box-shadow: 1px 1px 5px #888888;
+    margin-top: 5px;
+}
+
+.col-md-4.reviewQuestion :hover {
+    text-decoration: none;
+    background-color: lightgreen;
+}
+
+.col-md-4.reviewQuestion :active {
+    text-decoration: none;
+    color: red;
+}
+
+
+/* Side menu rows */
+
+.side-menu-basic p {
+    overflow: hidden;
+    margin: 0 0 30px;
+}
+
+.side-menu-basic p a {
+    text-decoration: none;
+    color: inherit;
+    max-width: 150px;
+    float: left;
+}
+
+.side-menu-basic p i {
+    float: right;
+    font-size: 18px;
+    cursor: pointer;
+}

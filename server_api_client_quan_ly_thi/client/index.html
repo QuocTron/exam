@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ExaminationSystem">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="A Examination System for school">
+    <meta name="author" content="team7">
+    <link rel="icon" href="assets/images/hutech-favicon.ico">
+    <title>Examination System</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Angular libs core CSS -->
+    <link href="assets/css/angular-block-ui.min.css" rel="stylesheet">
+    <link href="assets/css/angular-toastr.min.css" rel="stylesheet">
+    <link href="assets/css/ui-bootstrap-csp.css" rel="stylesheet">
+    <link href="assets/css/loading-bar.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!--For main page-->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <!--For form-->
+    <link href="assets/css/form.css" rel="stylesheet">
+    <!--For side menu-->
+    <link href="assets/css/side-menu.css" rel="stylesheet">
+    <!--For header-->
+    <link href="assets/css/header.css" rel="stylesheet">
+    <!--For utilities and others-->
+    <link href="assets/css/utilities.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- For header pages html -->
+    <!--================================================== -->
+    <!-- Fixed navbar -->
+    <div ng-include="'components/header/header.html'"></div>
+
+    <!-- For main and body will render -->
+    <!--================================================== -->
+    <div class="content">
+        <ui-view></ui-view>
+    </div>
+
+    <!-- For footer pages html -->
+    <!--================================================== -->
+    <footer id="myFooter">
+        <div class="footer-copyright">
+            <p>©FIT-SOFT - Nhóm phát triển phần mềm Khoa Công nghệ Thông tin </p>
+        </div>
+    </footer>
+
+    <!-- For Core libs -->
+    <!--================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Jquery core JavaScript -->
+    <script type='text/javascript' src="assets/js/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type='text/javascript' src="assets/js/bootstrap.min.js"></script>
+    <!-- sweetalert  -->
+    <script type='text/javascript' src="assets/js/sweetalert.min.js"></script>
+    <!-- Moment core JavaScript -->
+    <script type='text/javascript' src="assets/js/moment.min.js"></script>
+    <script type='text/javascript' src="assets/js/locales.min.js"></script>
+    <script type='text/javascript' src="assets/js/humanize-duration.js"></script>
+    <script type='text/javascript' src="assets/js/sidebar-menu.js"></script>
+    <!-- For Angular Core libs and relatative -->
+    <!--================================================== -->
+    <!-- Angular core JavaScript -->
+    <script type='text/javascript' src="assets/js/angular.js"></script>
+    <script type='text/javascript' src="assets/js/angular-ui-router.min.js"></script>
+    <script type='text/javascript' src="assets/js/angular-animate.min.js"></script>
+    <script type='text/javascript' src="assets/js/angular-messages.min.js"></script>
+    <script type='text/javascript' src="assets/js/ngStorage.min.js"></script>
+    <script type='text/javascript' src="assets/js/angular-sanitize.min.js"></script>
+    <script type='text/javascript' src="assets/js/ui-bootstrap-tpls.min.js"></script>
+    <script type='text/javascript' src="assets/js/angular-block-ui.min.js"></script>
+    <script type='text/javascript' src="assets/js/angular-toastr.tpls.min.js"></script>
+    <script type='text/javascript' src="assets/js/angular-jwt.min.js"></script>
+    <script type='text/javascript' src="assets/js/angular-sticky.min.js"></script>
+    <script type='text/javascript' src="assets/js/loading-bar.min.js"></script>
+    <script type='text/javascript' src="assets/js/angular-timer.min.js"></script>
+    <script type='text/javascript' src="assets/js/angular.audio.js"></script>
+    <!-- For Customize libs -->
+    <!--================================================== -->
+    <!-- Main -->
+    <script type='text/javascript' src="app.js"></script>
+    <!-- Angular services -->
+    <script type='text/javascript' src="services/notifyService.js"></script>
+    <script type='text/javascript' src="services/authService.js"></script>
+    <script type='text/javascript' src="services/examService.js"></script>
+    <script type='text/javascript' src="services/resultService.js"></script>
+    <script type='text/javascript' src="services/info.service.js"></script>
+    <script type='text/javascript' src="services/networkService.js"></script>
+    <!-- Angular filters -->
+    <script type='text/javascript' src="extensions/filters/characterFilter.js"></script>
+    <!-- Angular directives -->
+    <!--Angular controllers-->
+    <script type='text/javascript' src="components/login/loginCtrl.js"></script>
+    <script type='text/javascript' src="components/info/infoCtrl.js"></script>
+    <script type='text/javascript' src="components/exam/examCtrl.js"></script>
+    <script type='text/javascript' src="components/result/resultCtrl.js"></script>
+    <script type='text/javascript' src="components/header/headerCtrl.js"></script>
+    <!-- modals -->
+    <script type='text/javascript' src="components/exam/modal/questionReviewModalCtrl.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type='text/javascript' src="services/socketService.js"></script>
+    <!-- <script>
+        var socket = io(); // allow cors *
+        socket.on('connect', function () {
+            console.log("connected from the client side");
+        });
+        socket.on("disconnect", function () {
+            console.log("client disconnected from server");
+        });
+        
+    </script> -->
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+    <title>QUẢN LÝ THI TRẮC NGHIỆM HUTECH</title>
+    <link href="css/w3.css" rel="stylesheet" />
+    <link href="css/w3-more-colors.css" rel="stylesheet" />
+    <link href="css/ionicons.min.css" rel="stylesheet" />
+    <link href="css/digital_7.css" rel="stylesheet" />
+    <link href="css/loading-bar.css" rel="stylesheet" />
+    <link href="css/angular-toastr.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/search.css" rel="stylesheet" />
+    <script src="scripts/libs/xlsx.full.min.js"></script>
+    <script data-main="scripts/main.js" src="scripts/libs/require.js"></script>
+</head>
+
+<body ng-cloak>
+    <!-- Sidebar menu -->
+    <div ng-controller="menuCtrl" ng-include="'views/shared/menu.html'" ng-hide="!authentication.isAuth"></div>
+    <!-- Main content -->
+    <div class="w3-main" style="margin-left:250px;margin-top:43px;">
+        <div class="w3-container">
+            <ui-view></ui-view>
+        </div>
+    </div>
+
+    <!-- Block ui -->
+    <div class="cover"></div>
+    <div class="loading"><img src="/img/loading.gif" alt="loading" /></div>
+</body>
+</html>

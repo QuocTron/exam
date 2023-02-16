@@ -1,0 +1,28 @@
+<div class="container" style="margin-top:80px;">
+    <!-- login form -->
+    <form class="form-basic" name="loginForm" ng-submit="login()">
+
+        <!--title-->
+        <div class="form-title-row">
+            <h1 class="text-uppercase">ĐĂNG NHẬP HỆ THỐNG</h1>
+        </div>
+
+        <!--body-->
+        <div class="form-group">
+            <label for="studentCode">MÃ SỐ SINH VIÊN:</label>
+            <input type="text" class="form-control" ng-model="code" id="studentCode" autocomplete="off" required autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="password">MẬT KHẨU: <small>(là mã số sinh viên)</small></label>
+            <input type="password" class="form-control" ng-model="password" id="password" autocomplete="off" required>
+        </div>
+
+        <!--button submit-->
+        <button type="submit" class="btn btn-primary btn-block">
+      <h4>ĐĂNG NHẬP</h4>
+		</button>
+
+    </form>
+
+</div>

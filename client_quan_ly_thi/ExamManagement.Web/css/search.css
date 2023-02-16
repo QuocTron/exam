@@ -1,0 +1,12 @@
+﻿input[name=search] {
+    width: 190px;
+    -webkit-transition: width 0.4s ease-in-out;
+    margin-left:4.5px;
+    line-height: 29px;
+    transition: width 0.4s ease-in-out;
+}
+
+    /* When the input field gets focus, change its width to 100% */
+    input[name=search]:focus {
+        width: 50%;
+    }

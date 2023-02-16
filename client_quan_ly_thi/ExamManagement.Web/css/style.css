@@ -1,0 +1,171 @@
+﻿.w3-slim, .w3-wide, body {
+    color: #333;
+    font-family: Roboto, Arial, sans-serif;
+}
+
+.toggle {
+    cursor: pointer;
+}
+
+hr {
+    border-top: 1px solid #bebebe;
+}
+
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #2a6496;
+  text-decoration: underline;
+}
+
+/* Angular ng-cloak */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/* Modal */
+.w3-modal .w3-btn {
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+/* Login modal */
+.login-modal {
+    display: block;
+    background-color: #f1f1f1;
+}
+
+/* Top container */
+.logo img {
+    vertical-align:middle;
+    margin-top: -5px;
+    margin-left: 10px;
+}
+
+.logo a:hover,
+.logo a:active,
+.logo a:focus {
+    text-decoration: none;
+}
+
+/* Sidebar menu */
+nav a,
+nav a:hover {
+    color: #333;
+}
+
+.greeting {
+    margin-top: 15px;
+}
+
+/* Loading popup */
+.cover {
+        display: none; 
+        background: #000; 
+        position: fixed; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+        height: 100%; 
+        opacity: 0.8; 
+        z-index: 999;
+    }
+
+.loading {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1060;
+}
+
+/* Override W3 style*/
+hr {
+    margin: 0 0 10px 0;
+}
+
+/* Override toastr style*/
+.toast-top-right {
+  top: 46px;
+  right: 12px;
+}
+
+/* Timer */
+timer {
+    font-family: 'digital-7', Roboto, Arial, sans-serif;
+    font-size: 40px;
+    color: #0050ef;
+    line-height: normal;
+}
+
+.shift-header {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.shift-header .countdown-clock {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.end-label {
+    color: #0050ef;
+}
+
+.score-frame {
+    border: 1px solid #D3D3D3 !important;
+    min-height: 220px;
+    margin: 15px 0px;
+    margin-top: 10px;
+}
+
+.formResult-content {
+    font-size: 18px;
+    font-family: "Arial", Times, serif;
+    color: black;
+    padding: 5px;
+    border-bottom: 2px solid #6caee0;
+    text-align: center;
+}
+
+.formResult-container {
+    margin-top: -2em;
+    max-width: 1024px;
+}
+
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.glyphicon-ok :before {
+    content: "\e013"
+}
+
+.glyphicon-remove:before {
+    content: "\e014"
+}
+
+.text-success {
+    color: #3c763d
+}
+
+.text-danger {
+    color: #a94442
+}

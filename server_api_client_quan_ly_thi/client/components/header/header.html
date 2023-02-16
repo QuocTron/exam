@@ -1,0 +1,88 @@
+<div style="top: 0;position: fixed;z-index: 1050; width: 100%;" ng-controller="headerCtrl">
+    <nav class="navbar navbar-default navigation-clean-button" ng-show="$root.showHeader">
+        <div class="custom-line">
+            <ul class="nav col-md-2">
+                <li>
+                    <img id="hutech-logo" class="img-rounded" src="assets/images/hutech-slogan.png" alt="hutech-logo">
+                </li>
+            </ul>
+            <ul class="nav col-md-10">
+                <li style="font-size: 16px; margin-top: 5px">
+                    <div class="col-md-3">
+                        <p>HỌ TÊN:
+                            <b>{{$root.info.StudentName}}</b>
+                        </p>
+                        <p>MSSV:
+                            <b>{{$root.info.StudentCode}}</b>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>CA THI:
+                            <b>{{$root.info.StartTime| date: 'dd/MM/yyyy HH:mm' : 'UTC'}}</b>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>MÔN THI:
+                            <b>{{$root.info.SubjectName}}</b>
+                        </p>
+                        <p>MÃ ĐỀ THI:
+                            <b>{{$root.info.QuestionSheetId}}</b>
+                        </p>
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- <div class="navbar navbar-default navbar-fixed-top student-info-Utilities row" id="nav-header-scroll" ng-show="$root.showHeader">
+        <div class="nav navbar-nav student-info-Utilities-body col-md-12">
+            <div class="col-md-10">
+                    <h4 style="font-size: 16px">
+                            Họ Tên:
+                            <b>{{$root.info.StudentName}} -</b> MSSV:
+                            <b>{{$root.info.StudentCode}} -</b>
+                            Môn:
+                            <b>{{$root.info.SubjectName}} -</b> Mã đề:
+                            <b>{{$root.info.QuestionSheetId}} -</b>
+                            Ngày thi:
+                            <b>{{$root.info.StartTime | date: 'dd/MM/yyyy'}}</b>
+                        </h4>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+           
+        </div>
+    </div> -->
+
+    <nav class="navbar navbar-default navigation-clean-button" ng-show="!$root.showHeader">
+        <div class="container custom-line">
+            <div>
+                <ul class="container nav col-md-12">
+                    <li style="text-align: center">
+                        <img id="hutech-logo-login" class="img-rounded" src="assets/images/hutech-slogan.png" alt="hutech-logo">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<script>
+    $(document).ready(function() {
+        $(window).scroll(function(event) {
+            var scroll = $(window).scrollTop();
+            if (scroll > 0) {
+                $('#nav-header-no-scroll').hide(function() {
+                    $('#nav-header-scroll').show();
+                })
+            } else {
+                $('#nav-header-scroll').hide(function() {
+                    $('#nav-header-no-scroll').show();
+                })
+            }
+        });
+    });
+</script>

@@ -1,0 +1,288 @@
+﻿<header>
+    <h4><span class="w3-opacity">ĐỢT: {{ exam.name }} ❯ CA: {{ shift.name }} ❯ </span><b>MÔN: {{ subject.name }}</b></h4>
+
+    <div class="w3-row-padding w3-margin-bottom">
+        <a data-ng-click="showAddStudent()" href="javascript:void(0);" class="w3-btn w3-teal">Thêm sinh viên</a>
+        <form data-ng-submit="searchResult()" style="display: contents;">
+            <input type="text" name="search" data-ng-model="StudentCode" placeholder="Nhập mã sinh viên">
+            <button type="submit" class="w3-btn w3-teal w3-text-white">Tìm</button>
+        </form>
+        <a class="w3-right w3-btn w3-small w3-white w3-border w3-border-blue w3-round" ui-sref="shift({ shiftId: shift.id })">❮ Quay lại</a>
+    </div>
+    <hr />
+</header>
+
+<h6>Danh sách sinh viên - Số lượng: {{ students.length }}</h6>
+<a data-ng-click="showSubjectReset()" href="javascript:void(0);" class="w3-btn w3-teal" ng-if="shift.questionSheetCreated">Đăng nhập lại môn thi</a>
+<!--sua lai ten sau-->
+<a data-ng-click="showForm()" href="javascript:void(0);" class="w3-btn w3-teal" ng-if="shift.questionSheetCreated">Cộng giờ</a>
+<table class="w3-table w3-bordered w3-responsive">
+    <tr class="w3-light-grey">
+        <td>STT</td>
+        <td><input type="checkbox" ng-model="isCheckedAll" ng-click="checkAll()" /></td>
+        <td>MÃ SỐ SINH VIÊN</td>
+        <td>HỌ LÓT</td>
+        <td>TÊN</td>
+        <td>LỚP</td>
+        <td style="text-align:center;">TRẠNG THÁI</td>
+        <td style="text-align:center;">ĐÃ CỘNG</td>
+        <td class="w3-center"><i class="ion-ios-gear-outline"></i></td>
+    </tr>
+
+    <tr data-ng-repeat="student in students | orderBy:'groupCode'">
+        <td>{{ $index + 1 }}</td>
+        <td><input type="checkbox" ng-model="student.isChecked" /></td>
+        <td>{{ student.code }}</td>
+        <td>{{ student.lastName }}</td>
+        <td>{{ student.firstName }}</td>
+        <td>{{ student.className }}</td>
+        <td style="text-align:center;">
+            <label class="ion-flash w3-text-teal" ng-show="student.stateExam === 2"> Đã đăng nhập</label>
+            <label class="ion-flash-off w3-text-orange" ng-show="student.stateExam === 1"> Chưa đăng nhập</label>
+            <label class="ion-android-done w3-text-blue" ng-show="student.stateExam === 3"> Đã hoàn thành</label>
+        </td>
+        <td style="text-align:center;">{{ student.bonusTime }} phút</td>
+        <td class="w3-center">
+            <div ng-if="student.createdQuestionSheet && student.stateExam !== 3">
+                <a href="javascript:;" data-ng-click="showAddTime()">Cộng giờ</a> |
+                <a href="javascript:;" data-ng-click="showReset()">Đăng nhập lại</a>
+            </div>
+            <a href="javascript:;" data-ng-click="reviewQuestionSheet(student.questionSheetId)" ng-if="student.stateExam === 3">{{student.score}} điểm</a>
+        </td>
+    </tr>
+</table>
+
+<!--Search pop up-->
+<div class="w3-modal" id="searchModel" tabindex="-1" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="width: 90%">
+        <div class="w3-container w3-teal">
+            <span data-ng-click="hideSearch()" class="w3-closebtn w3-container w3-padding-8 w3-display-topright" title="Close Modal">×</span>
+            <h4 class="modal-title" id="myModalLabel">Kết quả tìm kiếm sinh viên</h4>
+        </div>
+        <form class="w3-container" role="form" name="searchForm">
+            <div class="w3-section">
+                <table class="w3-table w3-bordered w3-responsive">
+                    <tr class="w3-light-grey">
+                        <td class="w3-center">MÃ SỐ SINH VIÊN</td>
+                        <td class="w3-center">HỌ LÓT</td>
+                        <td class="w3-center">TÊN</td>
+                        <td class="w3-center">LỚP</td>
+                        <td class="w3-center">TRẠNG THÁI</td>
+                        <td class="w3-center">ĐÃ CỘNG</td>
+                        <td class="w3-center">MÔN THI</td>
+                        <td class="w3-center"><i class="ion-ios-gear-outline"></i></td>
+                    </tr>
+                    <tr class="w3-light-grey" data-ng-repeat="student in studentSearch">
+                        <td class="w3-center">{{ student.code }}</td>
+                        <td class="w3-center">{{ student.lastName }}</td>
+                        <td class="w3-center">{{ student.firstName }}</td>
+                        <td class="w3-center">{{ student.className }}</td>
+                        <td class="w3-center">
+                            <label class="ion-flash-off w3-text-orange" ng-show="student.stateExam === 1"> Chưa đăng nhập</label>
+                            <label class="ion-flash w3-text-teal" ng-show="student.stateExam === 2"> Đã đăng nhập</label>
+                            <label class="ion-android-done w3-text-blue" ng-show="student.stateExam === 3"> Đã hoàn thành</label>
+                        </td>
+                        <td class="w3-center">{{ student.extraTime }}</td>
+                        <td class="w3-center">{{ student.subjectName }}</td>
+                        <td class="w3-center">
+                            <div ng-if="student.createdQuestionSheet && student.stateExam !== 3">
+                                <a href="javascript:;" data-ng-click="showAddTimeAtSearch()">Cộng giờ</a> |
+                                <a href="javascript:;" data-ng-click="showResetAtSearch()">Đăng nhập lại</a>
+                            </div>
+                            <a href="javascript:;" data-ng-click="reviewQuestionSheet(student.questionSheetId)" ng-if="student.stateExam === 3">{{student.score}} điểm</a>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <div class="w3-row-padding w3-padding-12">
+                    <div class="w3-col s24 w3-right w3-center">
+                        <input type="button" value="Thoát" data-ng-click="hideSearch()" class="w3-btn w3-red" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="w3-modal" id="addTimeModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 600px">
+        <div class="w3-container w3-teal">
+            <span data-ng-click="cancel()" class="w3-closebtn w3-container w3-padding-8 w3-display-topright" title="Close Modal">×</span>
+            <h4 class="modal-title" id="myModalLabel">Cộng giờ cho {{ student.lastName }} {{ student.firstName }} &minus; {{ student.code }}</h4>
+        </div>
+        <form class="w3-container" role="form" name="CongGioForm">
+            <div class="w3-section">
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="title" class="w3-col s3">Đã cộng:</label>
+                    <div class="w3-col s9">
+                        {{extraTimeModel.extraTime}}
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="title" class="w3-col s3">Thời gian</label>
+                    <div class="w3-col s9">
+                        <input type="number" ng-model="extraTimeModel.time" class="w3-input w3-border" placeholder="Phút" required />
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="title" class="w3-col s3">Lý do</label>
+                    <div class="w3-col s9">
+                        <input type="text" ng-model="extraTimeModel.reason" class="w3-input w3-border" placeholder="Lý do" />
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <div class="w3-col s9 w3-right">
+                        <input type="submit" value="Lưu" ng-disabled="CongGioForm.$invalid" data-ng-click="addTime()" class="w3-btn w3-blue" />
+                        <input type="button" value="Thoát" data-ng-click="cancel()" class="w3-btn w3-red" />
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <div class="w3-border-dark-grey" style="overflow-x: auto; max-height: 200px; width: 100%;">
+                        <table class="w3-table w3-bordered w3-responsive" style="width: 100%;">
+                            <tr>
+                                <td style="width: 20%;">STT</td>
+                                <td class="w3-center" style="width: 30%;">THỜI GIAN</td>
+                                <td class="w3-center" style="width: 50%;">LÝ DO</td>
+                            </tr>
+                            <tr ng-repeat="extraTimeLog in extraTimeLogs">
+                                <td style="width: 20%;">{{ $index + 1 }}</td>
+                                <td class="w3-center" style="width: 30%;">{{ extraTimeLog.extraTime }}</td>
+                                <td class="w3-center" style="width: 50%;">{{ extraTimeLog.reason }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="w3-modal" id="resetModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 600px">
+        <div class="w3-container w3-teal">
+            <h4 class="modal-title" id="myModalLabel">Cho phép {{ student.lastName }} {{ student.firstName }} &minus; {{ student.code }} đăng nhập lại</h4>
+        </div>
+        <div class="w3-container">
+            <div class="w3-row-padding w3-margin-bottom">
+                <div class="w3-section">
+                    <div class="w3-col s10 w3-right">
+                        <h4>MSSV: {{student.code}}</h4>
+                        <h4>Họ tên: {{student.lastName}} {{student.firstName}}</h4>
+                        <h4>Bạn muốn cho sinh viên này đăng nhập lại?</h4> <hr />
+                        <button type="button" class="w3-btn w3-blue" data-ng-click="resetLogin()">Cho phép</button>
+                        <button type="button" class="w3-btn w3-red" data-ng-click="cancelReset()">Thoát</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="w3-modal" id="resetSubjectModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 600px">
+        <div class="w3-container w3-teal">
+            <h4 class="modal-title" id="myModalLabel">Cho phép sinh viên trong Môn: {{ subject.name }} đăng nhập lại</h4>
+        </div>
+        <div class="w3-container">
+            <div class="w3-row-padding w3-margin-bottom">
+                <div class="w3-section">
+                    <div class="w3-col s10 w3-right">
+                        <h4>
+                            Đợt thi: {{ exam.name }}
+                        </h4>
+                        <h4>
+                            Ca thi: {{ shift.name }}
+                        </h4>
+                        <h4>
+                            Môn: {{ subject.name }}
+                        </h4>
+                        <h4>Bạn muốn cho sinh viên trong môn này đăng nhập lại?</h4> <hr />
+                        <button type="button" class="w3-btn w3-blue" data-ng-click="resetSubjectLogin()">Cho phép</button>
+                        <button type="button" class="w3-btn w3-red" data-dismiss="modal">Thoát</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--add student modal-->
+<div class="w3-modal" id="addStudentModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 600px">
+        <div class="w3-container w3-teal">
+            <span data-ng-click="cancelAddStudentModal()" class="w3-closebtn w3-container w3-padding-8 w3-display-topright" title="Close Modal">×</span>
+            <h4 class="modal-title">Thêm sinh viên</h4>
+        </div>
+        <form class="w3-container" role="form" id="newStudentForm" name="FileForm">
+            <div class="w3-section">
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label>Môn thi: </label>
+                    <b>{{ subject.name }}</b>
+                    <input type="hidden" id="shiftSubjectId" value="{{shiftSubjectId}}">
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label>Mã sinh viên*</label>
+                    <input class="w3-input w3-border" required ng-model="newStudent.code" type="text" placeholder="Mã sinh viên">
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label>Họ lót*</label>
+                    <input class="w3-input w3-border" required ng-model="newStudent.lastName" type="text" placeholder="Họ lót">
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label>Tên*</label>
+                    <input class="w3-input w3-border" required ng-model="newStudent.firstName" type="text" placeholder="Tên">
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label>Tên lớp*</label>
+                    <input class="w3-input w3-border" required ng-model="newStudent.className" type="text" placeholder="Tên lớp">
+                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col s9 w3-right">
+                        <span>
+                            <input type="submit" value="Lưu" ng-disabled="FileForm.$invalid" data-ng-click="addStudent()" class="w3-btn w3-blue" />
+                        </span>
+                        <input type="button" value="Thoát" data-ng-click="cancelAddStudentModal()" class="w3-btn w3-red" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="w3-modal" id="addTimeModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 600px">
+        <div class="w3-container w3-teal">
+            <span data-ng-click="cancels()" class="w3-closebtn w3-container w3-padding-8 w3-display-topright" title="Close Modal">X</span>
+            <h4 class="modal-title" id="myModalLabel">Cộng giờ cho các sinh viên đang được chọn</h4>
+        </div>
+        <form class="w3-container" role="form" name="CongGioForm2">
+            <div class="w3-section">
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="title" class="w3-col s3">Thời gian</label>
+                    <div class="w3-col s9">
+                        <input type="number" ng-model="time.ExtraTime" class="w3-input w3-border" placeholder="Phút" required />
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="title" class="w3-col s3">Lý do</label>
+                    <div class="w3-col s9">
+                        <input type="text" ng-model="time.Reason" class="w3-input w3-border" placeholder="Lý do" />
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom">
+                    <div class="w3-col s9 w3-right">
+                        <input type="submit" value="Lưu" ng-disabled="CongGioForm2.$invalid" data-ng-click="addcheckStudentTime()" class="w3-btn w3-blue" />
+                        <input type="button" value="Thoát" data-ng-click="cancels()" class="w3-btn w3-red" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--review question sheet modal-->
+<div class="w3-modal" id="review-questionsheet" tabindex="-1" aria-hidden="true" ng-include="'/views/shared/ReviewQuestionSheet.html'">
+</div>

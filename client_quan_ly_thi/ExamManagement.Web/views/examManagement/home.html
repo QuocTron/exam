@@ -1,0 +1,100 @@
+﻿<header>
+    <h4><i class="ion-ios-home-outline" aria-hidden="true"></i> TRANG CHỦ</h4>
+    <div>
+        <a data-ng-click="showAdd()" href="javascript:void(0)" class="w3-btn w3-green">Tạo đợt thi</a>
+    </div>
+    <div class="w3-clear">
+        <br />
+    </div>
+    <hr />
+</header>
+
+<h6>DANH SÁCH ĐỢT THI</h6>
+<table class="w3-table w3-bordered w3-responsive">
+    <tr class="w3-light-grey">
+        <td>ĐỢT THI</td>
+        <td>NGÀY TẠO</td>
+        <td class="w3-center"><i class="ion-ios-gear-outline"></i></td>
+    </tr>
+    <tr data-ng-repeat="exam in exams">
+        <td>
+            <a ui-sref="exam({ examId: exam.id })">{{ exam.name }}</a>
+        </td>
+        <td>
+            {{ exam.createDate | date : 'dd/MM/yyyy' }}
+        </td>
+        <td class="w3-center">
+            <a data-ng-click="showEdit()" href="javascript:;">Sửa</a> |
+            <a data-ng-click="showConfirm()" href="javascript:;">Xóa</a>
+        </td>
+    </tr>
+</table>
+
+<!-- Exam modal popup -->
+<div class="w3-modal" id="examModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 600px">
+        <div class="w3-container w3-teal">
+            <span data-ng-click="cancel()" class="w3-closebtn w3-container w3-padding-8 w3-display-topright" title="Close Modal">×</span>
+            <h4 class="modal-title" id="createTitle" ng-if="!editMode">Tạo đợt thi</h4>
+            <h4 class="modal-title" id="updateTitle" ng-if="editMode">Sửa đợt thi</h4>
+        </div>
+        <form class="w3-container" role="form" name="examForm">
+            <div class="w3-section">
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="semester" class="w3-col s3">Học kỳ</label>
+                    <div class="w3-col s9">
+                        <select ng-options="sem as sem.name for sem in semesters track by sem.name" ng-model="semester" id="semester" class="w3-input w3-border" required>
+                            <!--<option value="{{s.name}}" data-ng-repeat="s in semesters">{{s.name}}</option>-->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="term" class="w3-col s3">
+                        Kỳ thi
+                    </label>
+                    <div class="w3-col s9">
+                        <select ng-options="termOp as termOp for termOp in termOptions track by termOp" ng-model="term" id="term" class="w3-input w3-border" required>
+                            <!--<option value="{{s}}" data-ng-repeat="s in termOptions">{{s}}</option>-->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding w3-margin-bottom">
+                    <label for="year" class="w3-col s3">Năm học</label>
+                    <div class="w3-col s9">
+                        <select ng-options="yearOp as yearOp for yearOp in yearOptions track by yearOp" ng-model="year" id="year" class="w3-input w3-border" required>
+                            <!--<option value="{{s}}" data-ng-repeat="s in yearOptions">{{s}}</option>-->
+                        </select>
+                    </div>
+                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col s9 w3-right">
+                        <span ng-if="!editMode">
+                            <input type="submit" value="Lưu" ng-disabled="examForm.$invalid" data-ng-click="create()" class="w3-btn w3-blue" />
+                        </span>
+                        <span ng-if="editMode">
+                            <input type="submit" value="Lưu" ng-disabled="examForm.$invalid" data-ng-click="update()" class="w3-btn w3-blue" />
+                        </span>
+                        <input type="button" value="Thoát" data-ng-click="cancel()" class="w3-btn w3-red" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Delete confirmation modal -->
+<div class="w3-modal" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 500px">
+        <div class="w3-container w3-teal">
+            <h4 class="modal-title" id="myModalLabel">Xác nhận!</h4>
+        </div>
+        <div class="w3-container">
+            <div class="w3-section w3-col s10 w3-right">
+                <h4>Bạn chắc chắn xóa không?</h4> <hr />
+                <button type="button" class="w3-btn w3-blue" data-ng-click="delete()">Xóa</button>
+                <button type="button" class="w3-btn w3-red" data-dismiss="modal">Thoát</button>
+            </div>
+        </div>
+    </div>
+</div>

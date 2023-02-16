@@ -1,0 +1,19 @@
+﻿<div class="w3-container">
+    <div class="w3-modal login-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+            <div class="w3-center">
+                <br />
+                <img src="../../img/logo2.png" alt="Logo Hutech" style="width:60%" class="w3-margin-top" />
+            </div>
+            <form class="w3-container" role="form" name="loginForm">
+                <div class="w3-section">
+                    <label><b>Tên đăng nhập</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" data-ng-model="loginData.userName" required autofocus />
+                    <label><b>Mật khẩu</b></label>
+                    <input class="w3-input w3-border" type="password" data-ng-model="loginData.password" required />
+                    <button class="w3-btn w3-btn-block w3-green w3-section w3-padding" type="submit" ng-disabled="loginForm.$invalid" data-ng-click="login()">Đăng nhập</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

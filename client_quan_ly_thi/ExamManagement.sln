@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamManagement.APIs", "ExamManagement.APIs\ExamManagement.APIs.csproj", "{F583FF61-F505-4CE8-9F70-F9B8E4E0A977}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamManagement.Businesses", "ExamManagement.Businesses\ExamManagement.Businesses.csproj", "{124C3203-B312-49C9-94AD-32E7541A0878}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamManagement.Entities", "ExamManagement.Entities\ExamManagement.Entities.csproj", "{BEBDBF9A-9CA6-4CF9-A862-382A1774F672}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamManagement.Data", "ExamManagement.Data\ExamManagement.Data.csproj", "{53153F9C-1C4A-43A7-B710-878C18A08ACD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamManagement.Services", "ExamManagement.Services\ExamManagement.Services.csproj", "{35CBFFB3-8CA7-4979-B47C-AB130240FAF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamManagement.Web", "ExamManagement.Web\ExamManagement.Web.csproj", "{B32BAA9B-FE32-4CF4-B234-CE68E01CFA3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F583FF61-F505-4CE8-9F70-F9B8E4E0A977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F583FF61-F505-4CE8-9F70-F9B8E4E0A977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F583FF61-F505-4CE8-9F70-F9B8E4E0A977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F583FF61-F505-4CE8-9F70-F9B8E4E0A977}.Release|Any CPU.Build.0 = Release|Any CPU
+		{124C3203-B312-49C9-94AD-32E7541A0878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{124C3203-B312-49C9-94AD-32E7541A0878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{124C3203-B312-49C9-94AD-32E7541A0878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{124C3203-B312-49C9-94AD-32E7541A0878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEBDBF9A-9CA6-4CF9-A862-382A1774F672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEBDBF9A-9CA6-4CF9-A862-382A1774F672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEBDBF9A-9CA6-4CF9-A862-382A1774F672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEBDBF9A-9CA6-4CF9-A862-382A1774F672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53153F9C-1C4A-43A7-B710-878C18A08ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53153F9C-1C4A-43A7-B710-878C18A08ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53153F9C-1C4A-43A7-B710-878C18A08ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53153F9C-1C4A-43A7-B710-878C18A08ACD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35CBFFB3-8CA7-4979-B47C-AB130240FAF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CBFFB3-8CA7-4979-B47C-AB130240FAF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CBFFB3-8CA7-4979-B47C-AB130240FAF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35CBFFB3-8CA7-4979-B47C-AB130240FAF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B32BAA9B-FE32-4CF4-B234-CE68E01CFA3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B32BAA9B-FE32-4CF4-B234-CE68E01CFA3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B32BAA9B-FE32-4CF4-B234-CE68E01CFA3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B32BAA9B-FE32-4CF4-B234-CE68E01CFA3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
